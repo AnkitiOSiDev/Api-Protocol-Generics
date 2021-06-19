@@ -1,0 +1,14 @@
+//
+//  Develpment.xcconfig
+//  ApiCall
+//
+//  Created by Ankit on 13/06/21.
+//  Copyright © 2021 Ankit. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+
+API_KEY = 9ca121c8scmshiraCV7oofU6k2d4p11v2vXjsnnX7mvC0QWCXg
+API_BASE_URL = mashape-community-urban-dictionary.p.rapidapi.com

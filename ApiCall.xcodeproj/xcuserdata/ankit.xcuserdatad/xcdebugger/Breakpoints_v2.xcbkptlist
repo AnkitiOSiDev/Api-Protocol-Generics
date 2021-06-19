@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "0E2E6D2D-1EA9-4B7C-A4BF-9D74F313DDEF"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2ABF7306-1CE6-4EF5-84F5-09A158CE770E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ApiCall/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "requestFailed(message:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2ABF7306-1CE6-4EF5-84F5-09A158CE770E - 9b4b0dd2ee30917f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ApiCall.ViewController.requestFailed(message: Swift.String) -&gt; ()"
+                  moduleName = "ApiCall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ankit/Documents/Practice/ApiCall/ApiCall/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "748">
+               </Location>
+               <Location
+                  uuid = "2ABF7306-1CE6-4EF5-84F5-09A158CE770E - 5567c86779a6488f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in ApiCall.ViewController.requestFailed(message: Swift.String) -&gt; ()"
+                  moduleName = "ApiCall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ankit/Documents/Practice/ApiCall/ApiCall/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "0B13AE7D-926C-441B-B58E-A7C226A0E394"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
