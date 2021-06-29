@@ -64,9 +64,18 @@ enum API {
         }
     }
     
-    static var baseURL: String {
+    static var baseURLDictionary: String {
          do {
-                  let value: String = try Configuration.value(for: "API_BASE_URL")
+                  let value: String = try Configuration.value(for: "API_BASE_URL_DICTIONARY")
+                  return value
+            } catch (let error) {
+                  fatalError(error.localizedDescription)
+            }
+    }
+    
+    static var baseURLWeather: String {
+         do {
+                  let value: String = try Configuration.value(for: "API_BASE_URL_WEATHER")
                   return value
             } catch (let error) {
                   fatalError(error.localizedDescription)

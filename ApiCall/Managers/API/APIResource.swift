@@ -13,7 +13,6 @@ protocol APIResourse {
     var basePath:String {get}
     associatedtype ModelType : Decodable
     var methodPath : String {get}
-    var filter: String? {get}
     var parameters: [String:String] {get}
     var headers: [String:String] {get}
     var httpMethod : HTTPMethod {get}
@@ -43,12 +42,44 @@ struct WordApiResourse: APIResourse {
     var headers: [String : String]
     var httpMethod: HTTPMethod
     var basePath: String {
-        return "https://" + API.baseURL
+        return "https://" + API.baseURLDictionary
     }
     var methodPath: String {
         return "/define"
     }
-    var filter: String?
     var parameters: [String : String]
     typealias ModelType = Words
+}
+
+
+struct WeatherForecastApiResoource: APIResourse {
+   var basePath: String {
+        return "https://" + API.baseURLWeather
+    }
+    
+    var methodPath: String {
+        return "/forecast.json"
+    }
+        
+    var parameters: [String : String]
+    
+    var headers: [String : String]
+    
+    var httpMethod: HTTPMethod
+    
+    typealias ModelType = Weather
+    
+    
+}
+
+
+extension Data {
+    func dataToJSON() -> Any? {
+       do {
+           return try JSONSerialization.jsonObject(with: self, options: .mutableContainers)
+       } catch let myJSONError {
+           print(myJSONError)
+       }
+       return nil
+    }
 }

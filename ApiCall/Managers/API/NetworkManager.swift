@@ -16,6 +16,7 @@ class NetWordManager:ApiCallerProtocol {
         let apiRequest = APIRequest(resourse: resourse)
         apiRequest.execute(withCompletion:completion)
     }
+
 }
 
 

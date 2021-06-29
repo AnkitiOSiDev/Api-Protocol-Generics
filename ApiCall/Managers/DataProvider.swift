@@ -57,3 +57,10 @@ extension Collection {
         return indices.contains(index) ? self[index] : nil
     }
 }
+
+
+extension DataProvider {
+    func isFetchingFirstPage() -> Bool {
+        return pagination.paginStatus == .noData && fetchingStatus == .idle && isNoDataPresent()
+    }
+}

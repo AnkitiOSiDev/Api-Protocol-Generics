@@ -16,15 +16,33 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(WordTableViewCell.nibCell, forCellReuseIdentifier: WordTableViewCell.identifierCell)
+        setTableView()
+        addSearchBar()
+        addRefreshControl()
+        dataProvider = WordDataProvider(delegate: self, pagination: Paging(isPagingAvailable: false, paginStatus: .noData, pageLimit: 20))
+        
+        dataProvider.fetchFirstPage()
+    }
+    
+    func addRefreshControl()  {
         refreshControl = UIRefreshControl()
         refreshControl.endRefreshing()
         refreshControl.addTarget(self, action: #selector(manualRefresh), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
-        dataProvider = WordDataProvider(delegate: self, pagination: Paging(isPagingAvailable: false, paginStatus: .noData, pageLimit: 20))
-        dataProvider.fetchFirstPage()
+    }
+    
+    func setTableView(){
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(WordTableViewCell.nibCell, forCellReuseIdentifier: WordTableViewCell.identifierCell)
+    }
+    
+    func addSearchBar(){
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Type something here to search"
+        navigationItem.searchController = search
     }
     
     @objc func manualRefresh() {
@@ -54,7 +72,6 @@ extension ViewController:UITableViewDelegate {
     
 }
 
-
 extension ViewController: DataProviderDelegate{
     func requestUpdatedSuccessFully() {
         DispatchQueue.main.async {
@@ -72,3 +89,11 @@ extension ViewController: DataProviderDelegate{
     }
 }
 
+extension ViewController:UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        print(text)
+    }
+    
+    
+}
