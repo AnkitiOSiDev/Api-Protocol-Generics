@@ -28,7 +28,7 @@ protocol DataProvider {
 }
 
 
-protocol DataProviderDelegate {
+protocol DataProviderDelegate:NSObjectProtocol {
     func requestUpdatedSuccessFully()
     func requestFailed(message:String)
 }

@@ -11,5 +11,6 @@
 
 
 API_KEY = 9ca121c8scmshiraCV7oofU6k2d4p11v2vXjsnnX7mvC0QWCXg
-API_BASE_URL_DICTIONARY = mashape-community-urban-dictionary.p.rapidapi.com
+API_BASE_URL_NEWS = bing-news-search1.p.rapidapi.com
 API_BASE_URL_WEATHER = weatherapi-com.p.rapidapi.com
+

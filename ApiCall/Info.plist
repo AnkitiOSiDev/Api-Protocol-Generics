@@ -64,7 +64,7 @@
 	<string>$(API_KEY)</string>
 	<key>API_BASE_URL_WEATHER</key>
 	<string>$(API_BASE_URL_WEATHER)</string>
-	<key>API_BASE_URL_DICTIONARY</key>
-	<string>$(API_BASE_URL_DICTIONARY)</string>
+	<key>API_BASE_URL_NEWS</key>
+	<string>$(API_BASE_URL_NEWS)</string>
 </dict>
 </plist>

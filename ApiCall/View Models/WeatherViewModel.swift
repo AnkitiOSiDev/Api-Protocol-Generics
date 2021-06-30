@@ -8,13 +8,16 @@
 
 import Foundation
 import UIKit
-
+protocol WeatherViewProtocol: NSObjectProtocol {
+    func getSearchText() -> String?
+}
 class WeatherViewModel: DataProvider {
     var pagination: Paging
     
     var fetchingStatus: FetchingStatus = .idle
     
     var delegate: DataProviderDelegate
+    weak var weatherDelegate: WeatherViewProtocol?
     
     var pageNo: Int = 0
         
@@ -53,7 +56,7 @@ class WeatherViewModel: DataProvider {
         if fetchingStatus == .idle {
             self.weatherForecast.removeAll()
             fetchingStatus = .fetching
-            ModuleManager.manager.getWeatherForecaset(term: "Jabalpur") {[weak self] (response) in
+            ModuleManager.manager.getWeatherForecaset(term: weatherDelegate?.getSearchText() ?? "") {[weak self] (response) in
                 self?.fetchingStatus = .idle
                 guard let self = self else {
                     return

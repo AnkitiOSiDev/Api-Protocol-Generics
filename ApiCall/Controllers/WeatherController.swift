@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class WeatherViewController: UIViewController {
-    var apiRequest: APIRequest<WordApiResourse>?
     @IBOutlet weak var tableView: UITableView!
     var dataProvider : WeatherViewModel!
     var refreshControl :UIRefreshControl! = nil
@@ -24,7 +23,7 @@ class WeatherViewController: UIViewController {
         addSearchBar()
         addRefreshControl()
         dataProvider = WeatherViewModel(delegate: self, pagination: Paging(isPagingAvailable: false, paginStatus: .noData, pageLimit: 20))
-            
+        dataProvider.weatherDelegate = self
         dataProvider.fetchFirstPage()
     }
     
@@ -46,6 +45,7 @@ class WeatherViewController: UIViewController {
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "Type something here to search"
+        search.searchBar.delegate = self
         navigationItem.searchController = search
     }
     
@@ -95,11 +95,23 @@ extension WeatherViewController: DataProviderDelegate{
     }
 }
 
+extension WeatherViewController: WeatherViewProtocol {
+    func getSearchText() -> String? {
+        guard let searchController = navigationItem.searchController else { return nil }
+        searchController.searchBar.resignFirstResponder()
+        return searchController.searchBar.text
+    }
+}
 extension WeatherViewController:UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         print(text)
     }
-    
-    
+}
+
+extension WeatherViewController:UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        navigationItem.searchController?.searchBar.resignFirstResponder()
+        dataProvider.fetchFirstPage()
+    }
 }

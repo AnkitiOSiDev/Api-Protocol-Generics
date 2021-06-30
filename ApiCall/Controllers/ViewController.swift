@@ -9,17 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var apiRequest: APIRequest<WordApiResourse>?
     @IBOutlet weak var tableView: UITableView!
-    var dataProvider : WordDataProvider!
+    var dataProvider : NewsDataProvider!
     var refreshControl :UIRefreshControl! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
-        addSearchBar()
         addRefreshControl()
-        dataProvider = WordDataProvider(delegate: self, pagination: Paging(isPagingAvailable: false, paginStatus: .noData, pageLimit: 20))
+        dataProvider = NewsDataProvider(delegate: self, pagination: Paging(isPagingAvailable: false, paginStatus: .noData, pageLimit: 20))
         
         dataProvider.fetchFirstPage()
     }
@@ -34,15 +32,7 @@ class ViewController: UIViewController {
     func setTableView(){
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(WordTableViewCell.nibCell, forCellReuseIdentifier: WordTableViewCell.identifierCell)
-    }
-    
-    func addSearchBar(){
-        let search = UISearchController(searchResultsController: nil)
-        search.searchResultsUpdater = self
-        search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = "Type something here to search"
-        navigationItem.searchController = search
+        tableView.register(NewsTableViewCell.nibCell, forCellReuseIdentifier: NewsTableViewCell.identifierCell)
     }
     
     @objc func manualRefresh() {
@@ -58,8 +48,8 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: WordTableViewCell.identifierCell, for: indexPath) as? WordTableViewCell{
-            cell.word = dataProvider.getData(index: indexPath.row)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifierCell, for: indexPath) as? NewsTableViewCell{
+            cell.news = dataProvider.getData(index: indexPath.row)
             return cell
         }
        return UITableViewCell()
@@ -87,13 +77,4 @@ extension ViewController: DataProviderDelegate{
         }
         
     }
-}
-
-extension ViewController:UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        print(text)
-    }
-    
-    
 }

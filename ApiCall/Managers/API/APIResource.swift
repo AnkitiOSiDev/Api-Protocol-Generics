@@ -38,17 +38,17 @@ extension APIResourse {
 }
 
 
-struct WordApiResourse: APIResourse {
+struct NewsApiResourse: APIResourse {
     var headers: [String : String]
     var httpMethod: HTTPMethod
     var basePath: String {
-        return "https://" + API.baseURLDictionary
+        return "https://" + API.baseURLNews
     }
     var methodPath: String {
-        return "/define"
+        return "/news"
     }
     var parameters: [String : String]
-    typealias ModelType = Words
+    typealias ModelType = TopNews
 }
 
 
@@ -71,6 +71,7 @@ struct WeatherForecastApiResoource: APIResourse {
     
     
 }
+
 
 
 extension Data {

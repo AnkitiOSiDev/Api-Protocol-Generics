@@ -25,7 +25,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Lz-Ae-06y">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Lz-Ae-06y">
                                                 <rect key="frame" x="0.0" y="8" width="414" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -60,7 +60,7 @@
             </objects>
             <point key="canvasLocation" x="611.59420289855075" y="475.44642857142856"/>
         </scene>
-        <!--Dictionary-->
+        <!--News-->
         <scene sceneID="7cJ-ex-qTA">
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="6t5-q0-B1i" customClass="ViewController" customModule="ApiCall" customModuleProvider="target" sceneMemberID="viewController">
@@ -82,7 +82,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="agk-yN-dw7"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Dictionary" id="dM8-aR-1EE"/>
+                    <navigationItem key="navigationItem" title="News" id="dM8-aR-1EE"/>
                     <connections>
                         <outlet property="tableView" destination="aZc-rL-dsL" id="9VG-Cp-8D5"/>
                     </connections>
@@ -109,11 +109,11 @@
             </objects>
             <point key="canvasLocation" x="-1219" y="152"/>
         </scene>
-        <!--Dictionary-->
+        <!--News-->
         <scene sceneID="UY4-io-Emw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GdO-ch-7xY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dictionary" image="book.fill" catalog="system" id="hOq-2e-J2F"/>
+                    <tabBarItem key="tabBarItem" title="News" image="doc.plaintext" catalog="system" id="hOq-2e-J2F"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="UAa-F0-Q08">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -149,7 +149,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="book.fill" catalog="system" width="128" height="100"/>
         <image name="cloud.rain.fill" catalog="system" width="128" height="125"/>
+        <image name="doc.plaintext" catalog="system" width="115" height="128"/>
     </resources>
 </document>

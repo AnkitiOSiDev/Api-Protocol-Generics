@@ -1,5 +1,5 @@
 //
-//  WordsViewModel.swift
+//  NewsViewModel.swift
 //  ApiCall
 //
 //  Created by Ankit on 16/06/21.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-class WordDataProvider: DataProvider {
+class NewsDataProvider: DataProvider {
     var pageNo: Int {
         return numberOfItems() % pagination.pageLimit
     }
     
     func getData<T>(index: Int) -> T? where T : Hashable {
-        return arrWord[safe: index] as? T
+        return arrNews[safe: index] as? T
     }
     
     func getData<T>(section: Int) -> T? where T : Hashable {
@@ -25,7 +25,7 @@ class WordDataProvider: DataProvider {
     var pagination: Paging
     var delegate: DataProviderDelegate
     
-    var arrWord = [Word]()
+    var arrNews = [News]()
     init(delegate:DataProviderDelegate,pagination:Paging) {
         self.delegate = delegate
         self.pagination = pagination
@@ -47,9 +47,9 @@ class WordDataProvider: DataProvider {
     
     private func getData(){
         if fetchingStatus == .idle {
-            self.arrWord.removeAll()
+            self.arrNews.removeAll()
             fetchingStatus = .fetching
-            ModuleManager.manager.getWords(term: "success") {[weak self] (response) in
+            ModuleManager.manager.getNews() {[weak self] (response) in
                 self?.fetchingStatus = .idle
                 guard let self = self else {
                     return
@@ -58,8 +58,8 @@ class WordDataProvider: DataProvider {
                 case .failure(let error):
                     self.delegate.requestFailed(message: error.localizedDescription)
                     break
-                case .success(let words):
-                    self.arrWord.append(contentsOf: words.list)
+                case .success(let news):
+                    self.arrNews.append(contentsOf: news.value)
                     self.delegate.requestUpdatedSuccessFully()
                 }
             }
@@ -67,7 +67,7 @@ class WordDataProvider: DataProvider {
     }
     
     func numberOfItems() -> Int {
-        return arrWord.count
+        return arrNews.count
     }
     
     func numberOfHeaders() -> Int {
@@ -75,6 +75,6 @@ class WordDataProvider: DataProvider {
     }
     
     func isNoDataPresent() -> Bool {
-        return arrWord.isEmpty
+        return arrNews.isEmpty
     }
 }

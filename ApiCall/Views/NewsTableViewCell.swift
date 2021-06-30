@@ -1,5 +1,5 @@
 //
-//  WordTableViewCell.swift
+//  NewsTableViewCell.swift
 //  ApiCall
 //
 //  Created by Ankit on 12/06/21.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WordTableViewCell: UITableViewCell {
+class NewsTableViewCell: UITableViewCell {
    
     @IBOutlet weak var lblDefination: UILabel!
     @IBOutlet weak var lblExample: UILabel!
@@ -24,11 +24,11 @@ class WordTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    var word : Word? {
+    var news : News? {
         didSet {
-            guard let word = word else { return  }
-            lblExample.text = word.definition
-            lblDefination.text = word.example
+            guard let news = news else { return  }
+            lblExample.text = news.name
+            lblDefination.text = news.description
         }
     }
     

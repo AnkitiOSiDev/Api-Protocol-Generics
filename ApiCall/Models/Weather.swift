@@ -77,7 +77,7 @@ extension WeatherCondition{
         ModuleManager.manager.getWeatherConditions { (response) in
             switch response {
             case .success(let weatherCondition):
-                for (index,condition) in weatherCondition.enumerated() {
+                for (_,condition) in weatherCondition.enumerated() {
                     if condition.code == code {
                         icon = condition.icon
                         break

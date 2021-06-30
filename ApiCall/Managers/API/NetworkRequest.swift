@@ -66,7 +66,7 @@ extension APIRequest: NetWorkRequest {
         do {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
-           // print("responde==>\(data.dataToJSON())")
+            print("responde==>\(data.dataToJSON())")
             let model = try decoder.decode(Resource.ModelType.self, from: data)
             return model
         } catch (let error) {

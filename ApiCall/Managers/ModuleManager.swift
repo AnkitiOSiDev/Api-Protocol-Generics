@@ -15,12 +15,13 @@ class ModuleManager {
         netWordManager = NetWordManager.manager
     }
     
-    func getWords(term:String,completion:@escaping responseHandler<Words>) {
+    func getNews(completion:@escaping responseHandler<TopNews>) {
         let headers : [String:String] = [
             "x-rapidapi-key": API.apiKey,
-            "x-rapidapi-host": API.baseURLDictionary
+            "x-rapidapi-host": API.baseURLNews,
+            "x-bingapis-sdk": "true"
         ]
-        let resource = WordApiResourse(headers: headers, httpMethod: .GET, parameters: ["term":term])
+        let resource = NewsApiResourse(headers: headers, httpMethod: .GET, parameters: ["textFormat":"Raw","safeSearch":"Strict"])
         netWordManager.getData(resourse: resource, completion: completion)
     }
     
@@ -30,7 +31,7 @@ class ModuleManager {
             "x-rapidapi-host": API.baseURLWeather
         ]
         
-        let resourse = WeatherForecastApiResoource(parameters: ["q" : term,"days":"7"], headers: headers, httpMethod: .GET)
+        let resourse = WeatherForecastApiResoource(parameters: ["q" : term,"days":"3"], headers: headers, httpMethod: .GET)
         netWordManager.getData(resourse: resourse, completion: completion)
         
     }
