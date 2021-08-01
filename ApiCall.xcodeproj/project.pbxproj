@@ -28,6 +28,7 @@
 		BC56BF462688CEC100AD141D /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC56BF442688CEC100AD141D /* WeatherTableViewCell.xib */; };
 		BC56BF49268A352A00AD141D /* WeatherConditions.json in Resources */ = {isa = PBXBuildFile; fileRef = BC56BF48268A352A00AD141D /* WeatherConditions.json */; };
 		BC56BF4B268CBDAF00AD141D /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC56BF4A268CBDAF00AD141D /* News.swift */; };
+		BC600F5526B6E5D8001ED5AC /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC600F5426B6E5D8001ED5AC /* Operations.swift */; };
 		BC735275267A5F62004FD3B5 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC735274267A5F62004FD3B5 /* Words.swift */; };
 		BC735278267A60C3004FD3B5 /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC735277267A60C3004FD3B5 /* APIResource.swift */; };
 		BC73527A267A6194004FD3B5 /* WordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC735279267A6194004FD3B5 /* WordsViewModel.swift */; };
@@ -59,6 +60,7 @@
 		BC56BF442688CEC100AD141D /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
 		BC56BF48268A352A00AD141D /* WeatherConditions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WeatherConditions.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		BC56BF4A268CBDAF00AD141D /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		BC600F5426B6E5D8001ED5AC /* Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
 		BC735274267A5F62004FD3B5 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		BC735277267A60C3004FD3B5 /* APIResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
 		BC735279267A6194004FD3B5 /* WordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsViewModel.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				BC20499B26749C180087829C /* NetworkManager.swift */,
 				BC735277267A60C3004FD3B5 /* APIResource.swift */,
 				BC2049952671140C0087829C /* NetworkRequest.swift */,
+				BC600F5426B6E5D8001ED5AC /* Operations.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				BC2049962671140C0087829C /* NetworkRequest.swift in Sources */,
 				BC735278267A60C3004FD3B5 /* APIResource.swift in Sources */,
 				BC204984267113F10087829C /* SceneDelegate.swift in Sources */,
+				BC600F5526B6E5D8001ED5AC /* Operations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

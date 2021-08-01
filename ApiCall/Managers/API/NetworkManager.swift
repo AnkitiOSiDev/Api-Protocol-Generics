@@ -8,11 +8,11 @@
 
 import Foundation
 
-class NetWordManager:ApiCallerProtocol {
-    static let manager = NetWordManager()
+class NetworkManager:ApiCallerProtocol {
+    static let manager = NetworkManager()
     private init(){
     }
-    func getData<T>(resourse: T, completion: @escaping responseHandler<T.ModelType>) where T : APIResourse {
+    func getData<T>(resourse: T, completion: @escaping NetworkCompletionHandler) where T : APIResourse {
         let apiRequest = APIRequest(resourse: resourse)
         apiRequest.execute(withCompletion:completion)
     }
@@ -21,6 +21,6 @@ class NetWordManager:ApiCallerProtocol {
 
 
 protocol ApiCallerProtocol {
-    func getData<T:APIResourse>(resourse:T,completion: @escaping responseHandler<T.ModelType>)
+    func getData<T:APIResourse>(resourse:T,completion: @escaping NetworkCompletionHandler)
 }
 

@@ -12,12 +12,11 @@ import UIKit
 
 protocol NetWorkRequest {
     associatedtype ModelType
-    func decode(_ data: Data) -> ModelType?
     func execute(withCompletion completion: @escaping responseHandler<ModelType>)
 }
 
 extension NetWorkRequest {
-    func load(request: URLRequest?, completion: @escaping responseHandler<ModelType>) {
+    func load(request: URLRequest?, completion: @escaping NetworkCompletionHandler) {
         guard let request = request else {
             return completion(.failure(ApiError.invalidRequest))
         }
@@ -26,10 +25,10 @@ extension NetWorkRequest {
             if let error = error {
                 return completion(.failure(error))
             }
-            guard let data = data, let value = self.decode(data) else {
+            guard let data = data else {
                 return completion(.failure(ApiError.invalidResponse))
             }
-            completion(.success(value))
+            completion(.success(data))
         }
         task.resume()
     }
@@ -45,11 +44,7 @@ class ImageRequest {
 }
 
 extension ImageRequest: NetWorkRequest {
-    func decode(_ data: Data) -> UIImage? {
-        return UIImage(data: data)
-    }
-    
-    func execute(withCompletion completion: @escaping responseHandler<UIImage>) {
+    func execute(withCompletion completion: @escaping NetworkCompletionHandler) {
         load(request: request, completion: completion)
     }
 }
@@ -62,20 +57,7 @@ class APIRequest<Resource: APIResourse> {
 }
 
 extension APIRequest: NetWorkRequest {
-    func decode(_ data: Data) -> Resource.ModelType? {
-        do {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            print("responde==>\(data.dataToJSON())")
-            let model = try decoder.decode(Resource.ModelType.self, from: data)
-            return model
-        } catch (let error) {
-            print(error)
-            return nil
-        }
-    }
-    
-    func execute(withCompletion completion: @escaping responseHandler<Resource.ModelType>) {
+    func execute(withCompletion completion: @escaping NetworkCompletionHandler) {
         load(request: resourse.request, completion: completion)
     }
 }

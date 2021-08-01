@@ -10,9 +10,10 @@ import Foundation
 
 class ModuleManager {
     static let manager = ModuleManager()
-    private var netWordManager : NetWordManager
+    private let queueManager: QueueManager
+    
     private init(){
-        netWordManager = NetWordManager.manager
+        queueManager = QueueManager.sharedInstance
     }
     
     func getNews(completion:@escaping responseHandler<TopNews>) {
@@ -22,7 +23,20 @@ class ModuleManager {
             "x-bingapis-sdk": "true"
         ]
         let resource = NewsApiResourse(headers: headers, httpMethod: .GET, parameters: ["textFormat":"Raw","safeSearch":"Strict"])
-        netWordManager.getData(resourse: resource, completion: completion)
+        
+        let fetch = ApiOperation(apiResource: resource)
+        let parse = DecodingOperation<TopNews>()
+        
+        let adapter = BlockOperation() { [unowned fetch, unowned parse] in
+            parse.dataFetched = fetch.dataFetched
+            parse.error = fetch.error
+        }
+        
+        adapter.addDependency(fetch)
+        parse.addDependency(adapter)
+        
+        parse.completionHandler = completion
+        queueManager.addOperations([fetch, parse, adapter])
     }
     
     func getWeatherForecaset(term:String,completion: @escaping responseHandler<Weather>){
@@ -31,22 +45,34 @@ class ModuleManager {
             "x-rapidapi-host": API.baseURLWeather
         ]
         
-        let resourse = WeatherForecastApiResoource(parameters: ["q" : term,"days":"3"], headers: headers, httpMethod: .GET)
-        netWordManager.getData(resourse: resourse, completion: completion)
+        let resource = WeatherForecastApiResoource(parameters: ["q" : term,"days":"3"], headers: headers, httpMethod: .GET)
+        let fetch = ApiOperation(apiResource: resource)
+        let parse = DecodingOperation<Weather>()
         
+        let adapter = BlockOperation() { [unowned fetch, unowned parse] in
+            parse.dataFetched = fetch.dataFetched
+            parse.error = fetch.error
+        }
+        
+        adapter.addDependency(fetch)
+        parse.addDependency(adapter)
+        
+        parse.completionHandler = completion
+        queueManager.addOperations([fetch, parse, adapter])
     }
     
-    func getWeatherConditions(completion: responseHandler<[WeatherCondition]>) {
+    func getWeatherConditions(completion: @escaping responseHandler<[WeatherCondition]>) {
         guard let path = Bundle.main.path(forResource: "WeatherConditions", ofType: "json") else { return }
         let url = URL(fileURLWithPath: path)
+        let parse = DecodingOperation<[WeatherCondition]>()
         do {
             let data = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            let model = try decoder.decode([WeatherCondition].self, from: data)
-            completion(.success(model))
+            parse.dataFetched = data
+            parse.completionHandler = completion
         } catch let error {
             completion(.failure(error))
         }
+        queueManager.addOperations([parse])
     }
 }
 
